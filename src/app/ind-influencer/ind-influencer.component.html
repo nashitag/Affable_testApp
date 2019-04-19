@@ -1,0 +1,37 @@
+<div class="div">
+  <p>
+    ind-influencer works!
+  </p>
+  <p *ngFor = "let data of singleInfluencer" >{{data.username}}</p>
+  <mat-card class="fullcard">
+      <div class="header"> Interests:
+          <select (change) = "changeinterest($event)" [(ngModel)]="selectedOption">
+             <option *ngFor = "let i of interests">{{i}}</option>
+             <!-- The syntax for in Angular is *ngFor = "let I of months" 
+              and to get the value of months we are displaying it in {{i}}. -->
+              <!-- The two curly brackets help with data binding. You declare 
+                the variables in your app.component.ts file and the same will 
+                be replaced using the curly brackets.    -->
+          </select> 
+       </div>
+       <mat-card ><mat-card-title>{{printedOption}}</mat-card-title></mat-card>
+  <ul *ngFor = "let data of sortInterest" class="ul" >
+    
+      <!-- <ul *ngFor="let item of data.stats.interests; let i = index" class="ul"> -->
+          <!-- {{i}} {{item}} -->
+              <mat-card >
+                  <mat-card-header>
+                      <div mat-card-avatar><img class="image" src={{data.picture}}></div>
+                      <mat-card-title>{{data.fullName}}</mat-card-title>
+                      <mat-card-subtitle>{{data.username}}</mat-card-subtitle>
+                      <!-- <li class="text"></li> -->
+                  </mat-card-header>  
+              <mat-card-content class="chip">
+                <mat-chip-list *ngFor="let item of data.stats.interests" class="chip">  
+                    <mat-chip class="mattchip" (click)="chipClick(item)">{{item}}</mat-chip> 
+                </mat-chip-list> 
+              </mat-card-content>
+              </mat-card>
+  </ul>
+</mat-card>
+</div>
