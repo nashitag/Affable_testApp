@@ -3,6 +3,7 @@
     ind-influencer works!
   </p>
   <p *ngFor = "let data of singleInfluencer" >{{data.username}}</p>
+  <!-- <div id="test-slider"></div> -->
   <mat-card class="fullcard">
       <div class="header"> Interests:
           <select (change) = "changeinterest($event)" [(ngModel)]="selectedOption">

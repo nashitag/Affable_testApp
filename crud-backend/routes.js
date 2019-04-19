@@ -34,11 +34,7 @@ router.get('/getsingleinfluencer', function(req, res, next) {
 });
 router.get('/getInterest', function(req, res, next) {
     var searchQuery = {};
-    console.log(req);
-    //{params:{'stats.followerCount':count}}
-    // if(req.query.followerCount)
-    //   searchQuery = { followerCount: req.query.stats.followerCount };
-    //   console.log(searchQuery)
+    console.log(req.query);
   
       Influencer.find(req.query, function(err, user){
       if (err) {
@@ -49,18 +45,21 @@ router.get('/getInterest', function(req, res, next) {
       res.send(user);
         })
 });
-function checkNested(obj) {
-    for (let prop in obj) {        
-        if (obj.hasOwnProperty(prop)) {
-            if (typeof obj[prop] == "object"){
-                console.log(`Key: ${prop}`)
-                checkNested(obj[prop]);
-            } else {
-              console.log(`Key: ${prop} 'value: ${obj[prop]}`)
-            }
-        }
-    }
-}
+
+router.get('/getCount', function(req, res, next) {
+    var searchQuery = {};
+      searchQuery = { followerCount: {"$gte" : req.query.x, "$lte" : req.query.y} };
+      console.log(searchQuery)
+      console.log(req.query);
+      Influencer.find(searchQuery, function(err, user){
+      if (err) {
+        res.status(400);      
+        res.send();
+      }
+      console.log("returning user in stats");
+      res.send(user);
+        })
+});
 
 router.post('/addinfluencer', (req, res, next)=>{
     let newInfluencer= new Influencer({

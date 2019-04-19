@@ -23,7 +23,10 @@ export class IndInfluencerComponent implements OnInit {
   
 
 
-  interests=["Fashion & accessory", "Lifestyle", "Entertainment", "Music", "Sports", "Fitness", "Food & beverages", "Parenting", "Beauty", "Arts", "Pets and animals", "Travel", "Outdoors", "Vehicles", "Leisure", "Toys", "Cartoons and comics", "Home and garden", "Games"];
+  interests=["Fashion & accessory", "Lifestyle", "Entertainment", "Music", "Sports", "Fitness", 
+              "Food & beverages", "Parenting", "Beauty", "Arts", "Pets and animals", "Travel", 
+              "Outdoors", "Vehicles", "Leisure", "Toys", "Cartoons and comics", "Home and garden", 
+              "Games"];
   selectedOption: string;
   printedOption= "all";
   
@@ -32,19 +35,7 @@ export class IndInfluencerComponent implements OnInit {
 
   singleInfluencer;
   interest;
-  stats=
-    {
-      "followerCount":155440542,
-      "interests":[
-        "Fitness",
-        "Fashion & accessory",
-        "Sports"
-      ],
-      "engagement":{
-        "avgCommentsRatio":0.000227,
-        "avgLikesRatio":0.035254
-      }
-    }
+  
   
 
   ngOnInit() {
@@ -53,6 +44,11 @@ export class IndInfluencerComponent implements OnInit {
     this.apiservice.getAllInfluencers().subscribe((data) => this.sortInterest=data);
 
     this.apiservice.getSingleInfluencer('dovecameron').subscribe((data) => this.singleInfluencer=data);
+    this.apiservice.getCount(12955300, 14198093).subscribe((data) => console.log(data));
+
+    
+    
+    
     //TO UPLOAD 300 INFLUENCERS DATA
     // this.apiservice.getforupload().subscribe((data) => this.upload300(data));
     // console.log(this.httpdata);

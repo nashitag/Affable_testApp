@@ -38,6 +38,12 @@ export class ApiServiceService {
     return this.http.get(this.api_url_interest, {params:{'stats.interests':interest}}).pipe(map((response) => response.json()));
   }
 
+  //FOLLOWER COUNT (x,y)
+  api_url_count = 'http://localhost:3000/api/getCount';
+  getCount(x:number, y:number){
+    return this.http.get(this.api_url_count, {params:{x, y}}).pipe(map((response) => response.json()));
+  }
+
 
 
 
