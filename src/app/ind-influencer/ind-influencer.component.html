@@ -25,11 +25,15 @@
                   <table style="width:100%; margin-top: 20px;">
                       <tr>
                           <td class="textbio">Avg. Comments</td>
-                          <td class="textbio">{{multiply(data.stats.engagement.avgCommentsRatio, data.followerCount)}}</td>
+                          <!-- <td class="textbio">{{multiply(data.stats.engagement.avgCommentsRatio, data.followerCount)}}, {{data.stats.engagement.avgCommentsRatio}}</td> -->
+                          <td class="textbio">{{data.stats.engagement.avgCommentsRatio}}</td>
+
                       </tr>
                       <tr>
                           <td class="textbio">Avg. Likes</td>
-                          <td class="textbio">{{multiply(data.stats.engagement.avgLikesRatio, data.followerCount)}}</td>
+                          <!-- <td class="textbio">{{multiply(data.stats.engagement.avgLikesRatio, data.followerCount)}}, {{data.stats.engagement.avgLikesRatio}}</td> -->
+                          <td class="textbio">{{data.stats.engagement.avgLikesRatio}}</td>
+
                       </tr>
                   </table>
                   
@@ -44,5 +48,5 @@
                 </div>   
                 </mat-card>
     </ul>
-</mat-card>
+  </mat-card>
 </div>

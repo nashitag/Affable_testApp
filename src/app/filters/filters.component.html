@@ -22,10 +22,7 @@
       </div>
     </section>
 
-    <div class="form-group">
-        <input class="form-control" type="text" ng-model="$ctrl.search" placeholder="Search for keywords in bio..." [(ngModel)]="keyword" (change)="keychange($event)"/>
-        <!-- <p>{{keyword}}</p> -->
-    </div>
+    
 
 
   <!-- </mat-card> -->
@@ -45,6 +42,11 @@
             </select> 
         </div>
       </section>
+
+      <div class="form-group">
+          <input class="form-control" type="text" ng-model="$ctrl.search" placeholder="Search for keywords in bio..." [(ngModel)]="keyword" (change)="keychange($event)"/>
+          <!-- <p>{{keyword}}</p> -->
+      </div>
   </mat-card>
 
 

@@ -66,11 +66,11 @@
   }
 
   .maincard{
-      width: 1150px;
+      width: 1180px;
       height: 800px;
       margin: auto;
       box-shadow:1px 1px 5px gray;
-      background-color: rgb(252, 240, 239);
+      background-color: rgba(248, 242, 248, 0.719);
     }
   .filter{
     width: 1200px;

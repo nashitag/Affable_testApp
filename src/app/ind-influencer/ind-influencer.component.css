@@ -3,7 +3,6 @@
     display: inline-block;
 }
 .ul{
-    margin: 0px;
     width: 250px;
     align-self: auto;
     padding: 0px;
@@ -11,8 +10,12 @@
     margin-left: 0px;
     margin: 3px;
     height: 370px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
     /* align-content: center; */
     vertical-align: middle;
+    
     
 }
 .infcard{
@@ -28,8 +31,8 @@
     font-family: 'Pontano Sans', sans-serif;
     font-size: 17px;
     height: 30px;
-    color: rgb(37, 91, 94);
-    background-color: rgb(240, 189, 170);
+    color: rgb(255, 255, 255);
+    background-color: rgb(163, 27, 134);
     padding: 20px;
 }
 .textbio{
@@ -64,9 +67,10 @@
     border-color: slategrey;
 }
 .fullcard{
-    height: 700px;
+    height: 750px;
+    width: 810px;
     overflow-y: auto;
-    background-color: rgb(231, 147, 117);
+    background-color: rgba(240, 248, 255, 0);
 }
 .header{
     height: 40px;

@@ -3,16 +3,16 @@
     font-weight: lighter; 
     text-align: center;
     width: 300px;
-    background-color: rgba(142, 195, 197, 0.836);
-
-    /* margin-left: 350px; */
-    /* display: inline-block; */
+    background: rgb(96,23,101);
+    background: linear-gradient(143deg, rgba(96,23,101,1) 0%, rgba(103,36,107,1) 41%, rgba(97,20,67,1) 100%);
+    color: white;
     
 }
 .filter{
-    background-color: rgba(95, 158, 160, 0.342);
-    margin-top: 3px;
-    margin-bottom: 3px;
+    background: rgb(121,44,126);
+    background: linear-gradient(143deg, rgba(121,44,126,1) 0%, rgba(121,44,126,1) 41%, rgba(139,43,101,1) 100%);
+    color: white;
+    margin-top: 5px;
     width: 300px;
     /* display: inline-block; */
 }
@@ -24,13 +24,14 @@
     width: 300px;
 }
 .range-slider{
-    width: 400px;
+    width: 300px;
 
 }
 .filter_subtitle{
     padding-bottom: 20px;
     font-family: 'Pontano Sans', sans-serif;
     font-size: 20px;
+    color: white;
 
 }
 .filter_subtitle_interest{
@@ -39,6 +40,8 @@
     font-size: 20px;
     display: inline-block;
     margin-top: 5px;
+    color: white;
+    width: 75px;
     
 }
 
