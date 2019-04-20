@@ -9,11 +9,15 @@ import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { MatChipsModule } from '@angular/material/chips';
 import { ApiServiceService } from './api-service.service';
+import { RangeSliderModule  } from 'ngx-rangeslider-component';
+import { FiltersComponent } from './filters/filters.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    IndInfluencerComponent
+    IndInfluencerComponent,
+    FiltersComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +26,8 @@ import { ApiServiceService } from './api-service.service';
     HttpModule,
     MatCardModule,
     FormsModule,
-    MatChipsModule
+    MatChipsModule,
+    RangeSliderModule
   ],
   providers: [ApiServiceService],
   bootstrap: [AppComponent]

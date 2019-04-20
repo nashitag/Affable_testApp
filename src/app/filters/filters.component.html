@@ -1,0 +1,25 @@
+<p class="p">
+  filters works!
+</p>
+<range-slider [min]="min" [max]="max" [step]="10000000" [(ngModel)]="range" (onRangeChange)="rangeChanged($event)" ></range-slider>
+
+<div class="header"> Interests:
+    <select (change) = "changeinterest($event)" [(ngModel)]="selectedOption">
+       <option *ngFor = "let i of interests">{{i}}</option>
+       <!-- The syntax for in Angular is *ngFor = "let I of months" 
+        and to get the value of months we are displaying it in {{i}}. -->
+        <!-- The two curly brackets help with data binding. You declare 
+          the variables in your app.component.ts file and the same will 
+          be replaced using the curly brackets.    -->
+    </select> 
+</div>
+<mat-card ><mat-card-title>{{printedOption}}</mat-card-title></mat-card>
+
+<div class="form-group">
+    <input class="form-control" type="text" ng-model="$ctrl.search" placeholder="Search Keywords" [(ngModel)]="keyword" (change)="keychange($event)"/>
+    <p>{{keyword}}</p>
+</div>
+
+
+
+<app-ind-influencer (sendPrintedOption)="receivePrintedOption($event)" [sortInterest]="sortInterest" ></app-ind-influencer>

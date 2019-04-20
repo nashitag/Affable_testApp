@@ -61,6 +61,22 @@ router.get('/getCount', function(req, res, next) {
         })
 });
 
+router.get('/getKeyword', function(req, res, next) {
+    var searchQuery = {};
+    console.log(req.query);
+    searchQuery =  {$text: { $search: req.query.keyword } } 
+    console.log(searchQuery);
+
+      Influencer.find(searchQuery, function(err, user){
+      if (err) {
+        res.status(400);      
+        res.send();
+      }
+      console.log("returning user in stats");
+      res.send(user);
+        })
+});
+
 router.post('/addinfluencer', (req, res, next)=>{
     let newInfluencer= new Influencer({
         username: req.body.username,

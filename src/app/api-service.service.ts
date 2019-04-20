@@ -44,6 +44,12 @@ export class ApiServiceService {
     return this.http.get(this.api_url_count, {params:{x, y}}).pipe(map((response) => response.json()));
   }
 
+  //keyword
+  api_url_keyword = 'http://localhost:3000/api/getKeyword';
+  getKeyword(keyword: string){
+    return this.http.get(this.api_url_keyword, {params:{'keyword':keyword}}).pipe(map((response) => response.json()));
+  }
+
 
 
 

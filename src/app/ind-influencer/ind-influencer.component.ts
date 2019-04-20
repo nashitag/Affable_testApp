@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Http } from '@angular/http';
 import { map} from 'rxjs/operators';
 import { ApiServiceService } from '../api-service.service';
@@ -17,16 +17,11 @@ export class IndInfluencerComponent implements OnInit {
 
   constructor(private http: Http, private apiservice: ApiServiceService) { }
 
+  imgurl = './images/inst.png'
   httpdata;
 
   influencer: Influencer;
   
-
-
-  interests=["Fashion & accessory", "Lifestyle", "Entertainment", "Music", "Sports", "Fitness", 
-              "Food & beverages", "Parenting", "Beauty", "Arts", "Pets and animals", "Travel", 
-              "Outdoors", "Vehicles", "Leisure", "Toys", "Cartoons and comics", "Home and garden", 
-              "Games"];
   selectedOption: string;
   printedOption= "all";
   
@@ -35,6 +30,8 @@ export class IndInfluencerComponent implements OnInit {
 
   singleInfluencer;
   interest;
+
+  @Output() sendPrintedOption = new EventEmitter<string>();
   
   
 
@@ -43,8 +40,8 @@ export class IndInfluencerComponent implements OnInit {
     this.apiservice.getAllInfluencers().subscribe((data) => console.log(data));
     this.apiservice.getAllInfluencers().subscribe((data) => this.sortInterest=data);
 
-    this.apiservice.getSingleInfluencer('dovecameron').subscribe((data) => this.singleInfluencer=data);
-    this.apiservice.getCount(12955300, 14198093).subscribe((data) => console.log(data));
+    // this.apiservice.getSingleInfluencer('dovecameron').subscribe((data) => this.singleInfluencer=data);
+    // this.apiservice.getCount(12955300, 14198093).subscribe((data) => console.log(data));
 
     
     
@@ -80,22 +77,18 @@ export class IndInfluencerComponent implements OnInit {
   //     console.log(item);
   //   });
   // }
-
+  
+  
+                  
   ////SORTING////
-  sortInterest;
-  changeinterest(event){
-    console.log(event);
-    console.log("Interest has been changed");
-    this.printedOption = this.selectedOption;
-    console.log(this.printedOption);
-    this.apiservice.getInterests(this.printedOption).subscribe((data) => this.sortInterest=data);
-
-  }
+  @Input() sortInterest;
+  
   chipClick(item){
     console.log(item);
     // console.log(event);
     this.printedOption = item;
     this.apiservice.getInterests(this.printedOption).subscribe((data) => this.sortInterest=data);
+    this.sendPrintedOption.emit(item);
   }
   ////SORTING////
 
