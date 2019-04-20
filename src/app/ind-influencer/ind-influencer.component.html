@@ -8,22 +8,41 @@
   
 
   <mat-card class="fullcard">
-  <ul *ngFor = "let data of sortInterest" class="ul">
-      <!-- <ul *ngFor="let item of data.stats.interests; let i = index" class="ul"> -->
-          <!-- {{i}} {{item}} -->
-              <mat-card >
-                  <mat-card-header>
-                      <div mat-card-avatar><img class="image" src={{data.picture}} onerror="this.src='https://i.postimg.cc/KvDsBx8B/iconfinder-JD-18-2246807.png'"></div>
-                      <mat-card-title>{{data.fullName}}</mat-card-title>
-                      <mat-card-subtitle>{{data.username}}</mat-card-subtitle>
-                      <!-- <li class="text"></li> -->
-                  </mat-card-header>  
-              <mat-card-content class="chip">
-                <mat-chip-list *ngFor="let item of data.stats.interests" class="chip">  
-                    <mat-chip class="mattchip" (click)="chipClick(item)">{{item}}</mat-chip> 
-                </mat-chip-list> 
-              </mat-card-content>
-              </mat-card>
-  </ul>
+    <ul *ngFor = "let data of sortInterestDATA" class="ul">
+        <!-- <ul *ngFor="let item of data.stats.interests; let i = index" class="ul"> -->
+            <!-- {{i}} {{item}} -->
+                <mat-card class="infcard">
+                    <div mat-card-avatar class="matt-avatar"><img class="image" src={{data.picture}} onerror="this.src='https://i.postimg.cc/KvDsBx8B/iconfinder-JD-18-2246807.png'"></div>
+
+                    <mat-card-header class="headercard">
+                        <mat-card-title class="infname">{{data.fullName}}</mat-card-title>
+                        <mat-card-subtitle class="infname">{{data.username}}</mat-card-subtitle>
+                        <!-- <li class="text"></li> -->
+                    </mat-card-header> 
+                <mat-card-content class="cardcontent1">
+                  <mat-chip class="textfollowers">Followers  {{data.followerCount}}</mat-chip>
+                  <!-- <p class="textbio">{{data.biography}}</p> <br/> -->
+                  <table style="width:100%; margin-top: 20px;">
+                      <tr>
+                          <td class="textbio">Avg. Comments</td>
+                          <td class="textbio">{{multiply(data.stats.engagement.avgCommentsRatio, data.followerCount)}}</td>
+                      </tr>
+                      <tr>
+                          <td class="textbio">Avg. Likes</td>
+                          <td class="textbio">{{multiply(data.stats.engagement.avgLikesRatio, data.followerCount)}}</td>
+                      </tr>
+                  </table>
+                  
+                </mat-card-content> 
+                <div class="int">
+                  <!-- <mat-card-content class="chip"> -->
+                    
+                    <mat-chip-list *ngFor="let item of data.stats.interests" class="chip">  
+                        <mat-chip class="mattchip" (click)="chipClick(item)">{{item}}</mat-chip> 
+                    </mat-chip-list> 
+                  <!-- </mat-card-content> -->
+                </div>   
+                </mat-card>
+    </ul>
 </mat-card>
 </div>

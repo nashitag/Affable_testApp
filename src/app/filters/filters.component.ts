@@ -15,9 +15,11 @@ export class FiltersComponent implements OnInit {
               "Food & beverages", "Parenting", "Beauty", "Arts", "Pets and animals", "Travel", 
               "Outdoors", "Vehicles", "Leisure", "Toys", "Cartoons and comics", "Home and garden", 
               "Games"];
-  sortInterest;
-  selectedOption;
-  printedOption="All";
+  sortFactor = ["Followers", "Likes", "Comments"];
+  sortInterestDATA;
+  interestOption;
+  sortingOption;
+  printedOption="Showing All";
 
   constructor(private http: Http, private apiservice: ApiServiceService) { }
   ngOnInit() {
@@ -32,13 +34,22 @@ export class FiltersComponent implements OnInit {
 
   }
 
+  ///FOLLOWERS, LIKES, COMMENTS///
+  changesortfactor($event){
+    // console.log(this.sortingOption);
+    // console.log(this.sortingOption==="Likes");
+    this.apiservice.sort(this.sortingOption).subscribe((data) => this.sortInterestDATA=(data));
+    
+  }
+
+
   ///KEYWORDS///
   keyword;
   keychange($event){
     console.log(event);
     console.log(this.keyword);
     this.apiservice.getKeyword(this.keyword).subscribe((data) => console.log(data));
-    this.apiservice.getKeyword(this.keyword).subscribe((data) => this.sortInterest=(data));
+    this.apiservice.getKeyword(this.keyword).subscribe((data) => this.sortInterestDATA=(data));
 
   }
   
@@ -51,17 +62,17 @@ export class FiltersComponent implements OnInit {
     console.log(event[0]);
     console.log(event[1]);
     this.apiservice.getCount(event[0], event[1]).subscribe((data) => console.log(data));
-    this.apiservice.getCount(event[0], event[1]).subscribe((data) => this.sortInterest=(data));
+    this.apiservice.getCount(event[0], event[1]).subscribe((data) => this.sortInterestDATA=(data));
   }
 
   ///INTERESTS///
   changeinterest(event){
     // console.log(event);
     console.log("Interest has been changed");
-    this.changeTitle(this.selectedOption);
+    this.changeTitle(this.interestOption);
     console.log(this.printedOption);
-    this.apiservice.getInterests(this.printedOption).subscribe((data) => this.sortInterest=data);
-
+    this.apiservice.getInterests(this.printedOption).subscribe((data) => this.sortInterestDATA=data);
+    
   }
 
   changeTitle(x){

@@ -38,12 +38,10 @@ export class IndInfluencerComponent implements OnInit {
   ngOnInit() {
 
     this.apiservice.getAllInfluencers().subscribe((data) => console.log(data));
-    this.apiservice.getAllInfluencers().subscribe((data) => this.sortInterest=data);
+    this.apiservice.getAllInfluencers().subscribe((data) => this.sortInterestDATA=data);
 
     // this.apiservice.getSingleInfluencer('dovecameron').subscribe((data) => this.singleInfluencer=data);
     // this.apiservice.getCount(12955300, 14198093).subscribe((data) => console.log(data));
-
-    
     
     
     //TO UPLOAD 300 INFLUENCERS DATA
@@ -53,6 +51,10 @@ export class IndInfluencerComponent implements OnInit {
     
   }
   displaydata(data) {this.httpdata = data;}
+
+  multiply(a:number, b:number){
+    return Math.round(a*b);
+  }
 
 
   //TO UPLOAD 300 INFLUENCERS DATA
@@ -81,13 +83,13 @@ export class IndInfluencerComponent implements OnInit {
   
                   
   ////SORTING////
-  @Input() sortInterest;
+  @Input() sortInterestDATA;
   
   chipClick(item){
     console.log(item);
     // console.log(event);
     this.printedOption = item;
-    this.apiservice.getInterests(this.printedOption).subscribe((data) => this.sortInterest=data);
+    this.apiservice.getInterests(this.printedOption).subscribe((data) => this.sortInterestDATA=data);
     this.sendPrintedOption.emit(item);
   }
   ////SORTING////
@@ -105,5 +107,4 @@ export class IndInfluencerComponent implements OnInit {
     };
   }
   
-
 }

@@ -26,6 +26,21 @@ export class ApiServiceService {
     return this.http.get(this.api_url_all).pipe(map((response) => response.json()));
   }
 
+  //SORT
+  api_url_sort = 'http://localhost:3000/api/sort';
+  sort(str:string){
+    console.log(str);
+    if(str==="Likes"){
+      return this.http.get(this.api_url_sort, {params:{'stats.engagement.avgLikesRatio': -1}}).pipe(map((response) => response.json()));
+    }
+    else if(str==="Comments"){
+      return this.http.get(this.api_url_sort, {params:{'stats.engagement.avgCommentsRatio': -1}}).pipe(map((response) => response.json()));
+    }
+    else if(str==="Followers"){
+      return this.http.get(this.api_url_sort, {params:{'followerCount': -1}}).pipe(map((response) => response.json()));
+    }
+  }
+
   //SINGLE USER
   api_url_single = 'http://localhost:3000/api/getsingleinfluencer';
   getSingleInfluencer(username: string){

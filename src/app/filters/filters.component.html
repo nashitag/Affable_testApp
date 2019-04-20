@@ -1,25 +1,57 @@
-<p class="p">
-  filters works!
-</p>
-<range-slider [min]="min" [max]="max" [step]="10000000" [(ngModel)]="range" (onRangeChange)="rangeChanged($event)" ></range-slider>
+<div class="maindiv">
+  <mat-card class="title"><mat-card-title>{{printedOption}}</mat-card-title></mat-card>
 
-<div class="header"> Interests:
-    <select (change) = "changeinterest($event)" [(ngModel)]="selectedOption">
-       <option *ngFor = "let i of interests">{{i}}</option>
-       <!-- The syntax for in Angular is *ngFor = "let I of months" 
-        and to get the value of months we are displaying it in {{i}}. -->
-        <!-- The two curly brackets help with data binding. You declare 
-          the variables in your app.component.ts file and the same will 
-          be replaced using the curly brackets.    -->
-    </select> 
+  <mat-card class="filter">
+    <mat-card-title class="filter_title">Filter by</mat-card-title>
+
+    <mat-card-subtitle class="filter_subtitle">Number of Followers</mat-card-subtitle>
+    <range-slider class="range-slider" [min]="min" [max]="max" [step]="10000000" [(ngModel)]="range" (onRangeChange)="rangeChanged($event)" ></range-slider>
+
+    <mat-card-subtitle class="filter_subtitle_interest">Interests</mat-card-subtitle>
+    <section class="container">
+      <div class="dropdown"> 
+          <select (change) = "changeinterest($event)" [(ngModel)]="interestOption" class="dropdown-select">
+            <option value="" disabled selected hidden>All</option>
+            <option *ngFor = "let i of interests">{{i}}</option>
+            <!-- The syntax for in Angular is *ngFor = "let I of months" 
+              and to get the value of months we are displaying it in {{i}}. -->
+              <!-- The two curly brackets help with data binding. You declare 
+                the variables in your app.component.ts file and the same will 
+                be replaced using the curly brackets.    -->
+          </select> 
+      </div>
+    </section>
+
+    <div class="form-group">
+        <input class="form-control" type="text" ng-model="$ctrl.search" placeholder="Search for keywords in bio..." [(ngModel)]="keyword" (change)="keychange($event)"/>
+        <!-- <p>{{keyword}}</p> -->
+    </div>
+
+
+  <!-- </mat-card> -->
+  <!-- <mat-card class="filter"> -->
+      <mat-card-subtitle class="filter_subtitle_interest">Sort by</mat-card-subtitle>
+      <section class="container">
+        <div class="dropdown"> 
+
+            <select (change) = "changesortfactor($event)" [(ngModel)]="sortingOption" class="dropdown-select">
+              <option value="" disabled selected hidden>Follower Count</option>
+              <option *ngFor = "let i of sortFactor">{{i}}</option>
+              <!-- The syntax for in Angular is *ngFor = "let I of months" 
+                and to get the value of months we are displaying it in {{i}}. -->
+                <!-- The two curly brackets help with data binding. You declare 
+                  the variables in your app.component.ts file and the same will 
+                  be replaced using the curly brackets.    -->
+            </select> 
+        </div>
+      </section>
+  </mat-card>
+
+
 </div>
-<mat-card ><mat-card-title>{{printedOption}}</mat-card-title></mat-card>
-
-<div class="form-group">
-    <input class="form-control" type="text" ng-model="$ctrl.search" placeholder="Search Keywords" [(ngModel)]="keyword" (change)="keychange($event)"/>
-    <p>{{keyword}}</p>
-</div>
 
 
 
-<app-ind-influencer (sendPrintedOption)="receivePrintedOption($event)" [sortInterest]="sortInterest" ></app-ind-influencer>
+
+
+<app-ind-influencer (sendPrintedOption)="receivePrintedOption($event)" [sortInterestDATA]="sortInterestDATA" class="influencers"></app-ind-influencer>

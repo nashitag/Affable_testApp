@@ -4,6 +4,19 @@ var router = express.Router();
 const Influencer = require('./model/schema');
 
 //retrieving data
+// router.get('/allinfluencers', (req, res, next)=>{
+//     Influencer.find(function(err,items){
+//         if(err){
+//             res.json(err);
+//         }
+//         else{
+//             console.log("getting all users");
+//             res.json(items);
+//         }
+//     })
+// })
+
+//sort by follower count ->
 router.get('/allinfluencers', (req, res, next)=>{
     Influencer.find(function(err,items){
         if(err){
@@ -13,8 +26,26 @@ router.get('/allinfluencers', (req, res, next)=>{
             console.log("getting all users");
             res.json(items);
         }
-    })
+    }).sort({followerCount:1})
 })
+
+//sort by likes
+router.get('/sort', (req, res, next)=>{
+    var searchQuery = {};
+    console.log(req.query);
+    // searchQuery = { req.query.str : req.query.num };
+    Influencer.find(function(err,items){
+        if(err){
+            res.json(err);
+        }
+        else{
+            console.log("getting all users");
+            res.json(items);
+        }
+    }).sort(req.query)
+})
+
+
 
 router.get('/getsingleinfluencer', function(req, res, next) {
     var searchQuery = {};
@@ -76,6 +107,7 @@ router.get('/getKeyword', function(req, res, next) {
       res.send(user);
         })
 });
+
 
 router.post('/addinfluencer', (req, res, next)=>{
     let newInfluencer= new Influencer({
