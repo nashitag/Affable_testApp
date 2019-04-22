@@ -11,23 +11,31 @@ import { MatChipsModule } from '@angular/material/chips';
 import { ApiServiceService } from './api-service.service';
 import { RangeSliderModule  } from 'ngx-rangeslider-component';
 import { FiltersComponent } from './filters/filters.component';
+import { RouterModule} from '@angular/router';
+import { InfluencerDetailComponent } from './influencer-detail/influencer-detail.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     IndInfluencerComponent,
-    FiltersComponent
+    FiltersComponent,
+    InfluencerDetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     HttpModule,
     MatCardModule,
     FormsModule,
     MatChipsModule,
-    RangeSliderModule
+    RangeSliderModule,
+    MatExpansionModule
   ],
   providers: [ApiServiceService],
   bootstrap: [AppComponent]

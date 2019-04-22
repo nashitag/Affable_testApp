@@ -1,0 +1,47 @@
+.infcardx{
+    padding: 20px;
+    height: 310px;
+    width: 210px;
+    align-content: center;
+    display: inline-block;
+    text-align: center;
+    /* background-position-x: 15 */
+}
+.imagex{
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(58, 3, 49);
+    margin: auto;
+}
+.matt-avatarx{
+    /* display: inline-block; */
+    /* margin: 0px; */
+    width: 110px;
+    height: 110px;
+    margin: auto;
+
+}
+.headercardx{
+    height: 50px;
+    /* margin-left: 60px; */
+    /* display: inline-block; */
+    width: 250px;
+    margin: auto;
+    align-content: center;
+    margin-left: 25px;
+    margin-top: 5px;
+    margin-right: auto;
+    text-align: center;
+}
+.textbiox{
+    height: 90px;
+    font-family: 'Pontano Sans', sans-serif;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+
+

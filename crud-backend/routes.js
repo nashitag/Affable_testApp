@@ -32,7 +32,9 @@ router.get('/allinfluencers', (req, res, next)=>{
 //sort by likes
 router.get('/sort', (req, res, next)=>{
     var searchQuery = {};
-    console.log(req.query);
+    // var count = req.query['count'];
+    // console.log(req.param);
+   
     // searchQuery = { req.query.str : req.query.num };
     Influencer.find(function(err,items){
         if(err){

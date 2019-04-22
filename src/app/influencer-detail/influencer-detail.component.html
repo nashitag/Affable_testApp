@@ -1,0 +1,36 @@
+<!-- <p>
+  influencer-detail works! now
+</p>
+<p>{{singleinfluencer[0].fullName}}</p> -->
+
+
+<mat-card class="infcardx" >
+    <!-- <a routerLink = "details">New component</a> -->
+    <div mat-card-avatar class="matt-avatarx"><img class="imagex" src={{singleinfluencer[0].picture}} onerror="this.src='https://i.postimg.cc/KvDsBx8B/iconfinder-JD-18-2246807.png'"></div>
+    
+    <mat-card-header class="headercardx">
+        <mat-card-title class="infnamex">{{singleinfluencer[0].fullName}}</mat-card-title>
+        <mat-card-subtitle class="infnamex">{{singleinfluencer[0].username}}</mat-card-subtitle>
+        <!-- <li class="text"></li> -->
+    </mat-card-header>
+
+    <mat-card-content class="textbiox">
+      <p >Followers  {{singleinfluencer[0].followerCount}}</p>
+      <p >{{singleinfluencer[0].biography}}</p>
+    </mat-card-content>
+
+
+    <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+                Interests
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+      
+          <p *ngFor="let item of singleinfluencer[0].stats.interests">{{item}}</p>
+          
+        </mat-expansion-panel>
+      </mat-accordion>
+    
+</mat-card>

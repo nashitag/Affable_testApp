@@ -24,6 +24,10 @@ export class IndInfluencerComponent implements OnInit {
   
   selectedOption: string;
   printedOption= "all";
+  selectedData;
+  onSelect(data): void{
+    this.selectedData = data;
+  }
   
   booleanx;
   i: Array<String>;
@@ -55,6 +59,8 @@ export class IndInfluencerComponent implements OnInit {
   multiply(a:number, b:number){
     return Math.round(a*b);
   }
+
+  
 
 
   //TO UPLOAD 300 INFLUENCERS DATA

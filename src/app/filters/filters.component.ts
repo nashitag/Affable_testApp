@@ -26,6 +26,11 @@ export class FiltersComponent implements OnInit {
     
   }
   
+  count;
+  increaseCount(){
+    this.apiservice.count= this.apiservice.count+1;
+    this.count = this.apiservice.count;
+  }
 
   receivePrintedOption($event){
     console.log(this.printedOption);

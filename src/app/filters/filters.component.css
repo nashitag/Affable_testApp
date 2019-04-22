@@ -2,7 +2,7 @@
     font-family: 'Pontano Sans', sans-serif;
     font-weight: lighter; 
     text-align: center;
-    width: 300px;
+    width: 260px;
     background: rgb(96,23,101);
     background: linear-gradient(143deg, rgba(96,23,101,1) 0%, rgba(103,36,107,1) 41%, rgba(97,20,67,1) 100%);
     color: white;
@@ -13,18 +13,18 @@
     background: linear-gradient(143deg, rgba(121,44,126,1) 0%, rgba(121,44,126,1) 41%, rgba(139,43,101,1) 100%);
     color: white;
     margin-top: 5px;
-    width: 300px;
+    width: 260px;
     /* display: inline-block; */
 }
 .filter_title{
     padding-bottom: 20px;
     font-family: 'Pontano Sans', sans-serif;
-    font-size: 20px;
+    font-size: 25px;
     text-align: center;
-    width: 300px;
+    width: 260px;
 }
 .range-slider{
-    width: 300px;
+    width: 260px;
 
 }
 .filter_subtitle{
@@ -50,7 +50,7 @@
     
 }
 .form-control{
-    width: 280px;
+    width: 240px;
     height: 35px;
     font-family: 'Pontano Sans', sans-serif;
     font-size: 18px;
@@ -94,7 +94,7 @@ body {
     position: relative;
     overflow: hidden;
     height: 28px;
-    width: 150px;
+    width: 130px;
     background: #f2f2f2;
     border: 1px solid;
     border-color: white #f7f7f7 whitesmoke;
@@ -198,5 +198,11 @@ body {
     z-index: 3;
     margin-left: 0px;
     margin-right: 0px;
+  }
+  .dslider{
+    border-radius: 50%;
+  }
+  .slidersContainer{
+    border-radius: 50%;
   }
 
