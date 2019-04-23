@@ -25,8 +25,10 @@ export class IndInfluencerComponent implements OnInit {
   selectedOption: string;
   printedOption= "all";
   selectedData;
+  flipped=true;
   onSelect(data): void{
     this.selectedData = data;
+    this.flipped = !this.flipped;
   }
   
   booleanx;
@@ -34,6 +36,7 @@ export class IndInfluencerComponent implements OnInit {
 
   singleInfluencer;
   interest;
+  
 
   @Output() sendPrintedOption = new EventEmitter<string>();
   
@@ -42,7 +45,7 @@ export class IndInfluencerComponent implements OnInit {
   ngOnInit() {
 
     this.apiservice.getAllInfluencers().subscribe((data) => console.log(data));
-    this.apiservice.getAllInfluencers().subscribe((data) => this.sortInterestDATA=data);
+    // this.apiservice.getAllInfluencers().subscribe((data) => this.sortInterestDATA=data);
 
     // this.apiservice.getSingleInfluencer('dovecameron').subscribe((data) => this.singleInfluencer=data);
     // this.apiservice.getCount(12955300, 14198093).subscribe((data) => console.log(data));

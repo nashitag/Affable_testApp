@@ -26,11 +26,11 @@ export class FiltersComponent implements OnInit {
     
   }
   
-  count;
-  increaseCount(){
-    this.apiservice.count= this.apiservice.count+1;
-    this.count = this.apiservice.count;
-  }
+  // count;
+  // increaseCount(){
+  //   this.apiservice.count= this.apiservice.count+1;
+  //   this.count = this.apiservice.count;
+  // }
 
   receivePrintedOption($event){
     console.log(this.printedOption);
@@ -69,6 +69,18 @@ export class FiltersComponent implements OnInit {
     this.apiservice.getCount(event[0], event[1]).subscribe((data) => console.log(data));
     this.apiservice.getCount(event[0], event[1]).subscribe((data) => this.sortInterestDATA=(data));
   }
+  rangeChangedloadmore(min, max){
+    // console.log(event[0]);
+    // console.log(event[1]);
+    // this.apiservice.getCount(event[0], event[1]).subscribe((data) => console.log(data));
+    this.apiservice.getCount(min, max).subscribe((data) => this.sortInterestDATA=(data));
+  }
+
+  count=1;
+  increaseCount(){
+    this.count= this.count+1;
+    this.apiservice.getfiltercount(this.count);
+  }
 
   ///INTERESTS///
   changeinterest(event){
@@ -77,7 +89,6 @@ export class FiltersComponent implements OnInit {
     this.changeTitle(this.interestOption);
     console.log(this.printedOption);
     this.apiservice.getInterests(this.printedOption).subscribe((data) => this.sortInterestDATA=data);
-    
   }
 
   changeTitle(x){

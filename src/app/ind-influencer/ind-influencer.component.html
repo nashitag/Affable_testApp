@@ -11,7 +11,7 @@
     <ul *ngFor = "let data of sortInterestDATA" class="ul" >
         <!-- <ul *ngFor="let item of data.stats.interests; let i = index" class="ul"> -->
             <!-- {{i}} {{item}} -->
-            <div class='flippable-card' [class.flipped]="data === selectedData" (click)="onSelect(data)">
+            <div class='flippable-card' [class.flipped]="data === selectedData && flipped" (click)="onSelect(data)">
                 <mat-card class="infcard" >
                     <!-- <a routerLink = "details">New component</a> -->
                     <div mat-card-avatar class="matt-avatar"><img class="image" src={{data.picture}} onerror="this.src='https://i.postimg.cc/KvDsBx8B/iconfinder-JD-18-2246807.png'"></div>
@@ -69,13 +69,15 @@
                         </mat-expansion-panel>
                       </mat-accordion>
                         <mat-card-header class="headercardx">
+                          <!-- <div class="headercardx"> -->
                             <mat-card-title class="infnamext">{{data.fullName}}</mat-card-title>
                             <mat-card-subtitle class="infnamex">{{data.username}}</mat-card-subtitle>
                             <!-- <li class="text"></li> -->
+                          <!-- </div> -->
                         </mat-card-header>
 
                         <mat-card-content class="textbiox">
-                            <mat-chip class="textfollowersx">Followers  {{data.followerCount}}</mat-chip>
+                            <!-- <mat-chip class="textfollowersx">Followers  {{data.followerCount}}</mat-chip> -->
                           <p class="px">{{data.biography}}</p>
                         </mat-card-content>
 
@@ -86,6 +88,8 @@
               </div>
           
     </ul>
+
+    
   </mat-card>
   
 </div>

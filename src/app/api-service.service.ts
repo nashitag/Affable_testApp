@@ -4,7 +4,7 @@ import { Http } from '@angular/http'
 import { map} from 'rxjs/operators';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { RequestOptions, Headers } from '@angular/http';
-
+import { FiltersComponent } from '../app/filters/filters.component'
 
 
 
@@ -25,20 +25,29 @@ export class ApiServiceService {
   getAllInfluencers(){
     return this.http.get(this.api_url_all).pipe(map((response) => response.json()));
   }
-  count=1;
+  
+//  count=FiltersComponent.count;
 
   //SORT
-  api_url_sort = 'http://localhost:3000/api/sort';
+  // api_url_sort = 'http://localhost:3000/api/sort/'+this.count*20;
+  // api_url_sort = 'http://localhost:3000/api/sort';
+  api_url_sort;
   sort(str:string){
+    this.api_url_sort = 'http://localhost:3000/api/sort/'+this.apicount;
+
+    var params = new URLSearchParams();
+    // params.set('stats.engagement.avgLikesRatio', -1);
+    params.set('limit', '20');
     console.log(str);
     if(str==="Likes"){
-      return this.http.get(this.api_url_sort, {params: {'stats.engagement.avgLikesRatio': -1, 'count': this.count}}).pipe(map((response) => response.json()));
+      return this.http.get(this.api_url_sort, {params: {'stats.engagement.avgLikesRatio': -1}}).pipe(map((response) => response.json()));
+      // return this.http.get(this.api_url_sort, {params: {'stats.engagement.avgLikesRatio': -1, 'limit': 20}}).pipe(map((response) => response.json()));
     }
     else if(str==="Comments"){
-      return this.http.get(this.api_url_sort, {params:{'stats.engagement.avgCommentsRatio': -1, 'count': this.count}}).pipe(map((response) => response.json()));
+      return this.http.get(this.api_url_sort, {params:{'stats.engagement.avgCommentsRatio': -1}}).pipe(map((response) => response.json()));
     }
     else if(str==="Followers"){
-      return this.http.get(this.api_url_sort, {params:{'followerCount': -1, 'count': this.count}}).pipe(map((response) => response.json()));
+      return this.http.get(this.api_url_sort, {params:{'followerCount': -1}}).pipe(map((response) => response.json()));
     }
   }
 
@@ -50,15 +59,25 @@ export class ApiServiceService {
     return this.http.get(this.api_url_single, {params:{'username':username}}).pipe(map((response) => response.json()));
   }
 
+
+  apicount=1;
+  getfiltercount(count:number){
+    console.log(count);
+    this.apicount=count;
+    console.log(this.apicount);
+  }
   //INTERESTS
-  api_url_interest = 'http://localhost:3000/api/getInterest';
+  api_url_interest;
   getInterests(interest: string){
+    this.api_url_interest = 'http://localhost:3000/api/getInterest';
     return this.http.get(this.api_url_interest, {params:{'stats.interests':interest}}).pipe(map((response) => response.json()));
   }
 
   //FOLLOWER COUNT (x,y)
-  api_url_count = 'http://localhost:3000/api/getCount';
+  api_url_count;
   getCount(x:number, y:number){
+    this.api_url_count = 'http://localhost:3000/api/getCount/'+this.apicount;
+    console.log(this.api_url_count);
     return this.http.get(this.api_url_count, {params:{x, y}}).pipe(map((response) => response.json()));
   }
 
@@ -67,6 +86,8 @@ export class ApiServiceService {
   getKeyword(keyword: string){
     return this.http.get(this.api_url_keyword, {params:{'keyword':keyword}}).pipe(map((response) => response.json()));
   }
+
+
 
 
 

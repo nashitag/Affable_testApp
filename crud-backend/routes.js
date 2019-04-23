@@ -26,14 +26,16 @@ router.get('/allinfluencers', (req, res, next)=>{
             console.log("getting all users");
             res.json(items);
         }
-    }).sort({followerCount:1})
+    }).sort({followerCount:-1}).limit(20)
 })
 
-//sort by likes
-router.get('/sort', (req, res, next)=>{
+//sort 
+router.get('/sort/:count', (req, res, next)=>{
     var searchQuery = {};
+    count = req.params.count;
+    console.log("count"+count);
     // var count = req.query['count'];
-    // console.log(req.param);
+    console.log(req.query);
    
     // searchQuery = { req.query.str : req.query.num };
     Influencer.find(function(err,items){
@@ -42,9 +44,10 @@ router.get('/sort', (req, res, next)=>{
         }
         else{
             console.log("getting all users");
+            console.log(items)
             res.json(items);
         }
-    }).sort(req.query)
+    }).sort(req.query).limit(req.params.count*20)
 })
 
 
@@ -68,20 +71,23 @@ router.get('/getsingleinfluencer', function(req, res, next) {
 router.get('/getInterest', function(req, res, next) {
     var searchQuery = {};
     console.log(req.query);
+    // count = req.params.count;
   
       Influencer.find(req.query, function(err, user){
       if (err) {
         res.status(400);      
         res.send();
       }
-      console.log("returning user in stats");
+      console.log("returning user in interest");
       res.send(user);
         })
 });
 
-router.get('/getCount', function(req, res, next) {
+router.get('/getCount/:count', function(req, res, next) {
     var searchQuery = {};
       searchQuery = { followerCount: {"$gte" : req.query.x, "$lte" : req.query.y} };
+      count = req.params.count;
+      console.log("count " + count);
       console.log(searchQuery)
       console.log(req.query);
       Influencer.find(searchQuery, function(err, user){
@@ -91,7 +97,9 @@ router.get('/getCount', function(req, res, next) {
       }
       console.log("returning user in stats");
       res.send(user);
-        })
+        // }).sort({followerCount:-1}).skip((count-1)*20).limit(20)
+    }).sort({followerCount:-1}).limit(20*count)
+
 });
 
 router.get('/getKeyword', function(req, res, next) {
@@ -105,7 +113,7 @@ router.get('/getKeyword', function(req, res, next) {
         res.status(400);      
         res.send();
       }
-      console.log("returning user in stats");
+      console.log("returning user in keywords");
       res.send(user);
         })
 });

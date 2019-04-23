@@ -169,7 +169,7 @@
     height: 50px;
     /* margin-left: 60px; */
     /* display: inline-block; */
-    width: 210px;
+    width: 190px;
     margin-top: 5px;
     margin: auto;
     align-content: center;
@@ -184,21 +184,27 @@
     font-family: 'Pontano Sans', sans-serif;
     font-size: 13px;
     margin-bottom: 5px;
-    margin-bottom: 5px;
+    margin-left: auto;
     align-content: center;
     align-items: center;
     
+}
+.mat-card-header-text{
+    margin: 0px;
+    width: 180px;
 }
 .infnamex{
     width: 190px;
     margin: 3px;
     margin-bottom: 10px;
+    text-align: center;
 }
 .infnamext{
     width: 190px;
     margin-bottom: 10px;
     margin-top: 10px;
     font-size: 16px;
+    text-align: center;
 
 }
 .px{
