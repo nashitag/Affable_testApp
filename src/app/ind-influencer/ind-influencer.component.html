@@ -11,10 +11,10 @@
     <ul *ngFor = "let data of sortInterestDATA" class="ul" >
         <!-- <ul *ngFor="let item of data.stats.interests; let i = index" class="ul"> -->
             <!-- {{i}} {{item}} -->
-            <div class='flippable-card' [class.flipped]="data === selectedData && flipped" (click)="onSelect(data)">
+            <div class='flippable-card' [class.flipped]="data === selectedData && flipped" >
                 <mat-card class="infcard" >
                     <!-- <a routerLink = "details">New component</a> -->
-                    <div mat-card-avatar class="matt-avatar"><img class="image" src={{data.picture}} onerror="this.src='https://i.postimg.cc/KvDsBx8B/iconfinder-JD-18-2246807.png'"></div>
+                    <div mat-card-avatar class="matt-avatar" (click)="onSelect(data)"><img class="image" src={{data.picture}} onerror="this.src='https://i.postimg.cc/KvDsBx8B/iconfinder-JD-18-2246807.png'"></div>
                     <a [routerLink] = "['/data', data.username]">
                     <mat-card-header class="headercard">
                         <mat-card-title class="infname">{{data.fullName}}</mat-card-title>
@@ -53,7 +53,7 @@
 
                 <mat-card class='back'>
                     <!-- <mat-card-title>to ya</mat-card-title> -->
-                    <div mat-card-avatar class="matt-avatarx"><img class="imagex" src={{data.picture}} onerror="this.src='https://i.postimg.cc/KvDsBx8B/iconfinder-JD-18-2246807.png'"></div>
+                    <div mat-card-avatar class="matt-avatarx" (click)="onSelect(data)"><img class="imagex" src={{data.picture}} onerror="this.src='https://i.postimg.cc/KvDsBx8B/iconfinder-JD-18-2246807.png'"></div>
     
 
                     <mat-accordion>
