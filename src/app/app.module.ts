@@ -15,6 +15,8 @@ import { RouterModule} from '@angular/router';
 import { InfluencerDetailComponent } from './influencer-detail/influencer-detail.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { MillionPipe } from './ind-influencer/million.pipe';
+import { DecimalPipe } from '@angular/common';
 
 
 
@@ -23,7 +25,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     AppComponent,
     IndInfluencerComponent,
     FiltersComponent,
-    InfluencerDetailComponent
+    InfluencerDetailComponent,
+    MillionPipe
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     RangeSliderModule,
     MatExpansionModule
   ],
-  providers: [ApiServiceService],
+  providers: [ApiServiceService, DecimalPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

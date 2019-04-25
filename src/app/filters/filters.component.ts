@@ -18,12 +18,21 @@ export class FiltersComponent implements OnInit {
   sortFactor = ["Followers", "Likes", "Comments"];
   sortInterestDATA;
   interestOption;
-  sortingOption;
-  printedOption="Showing All";
+  sortingOption = "Followers";
+  printedOption="Lifestyle";
+  sortingoptions=
+    {Likes:'stats.engagement.avgLikesRatio',
+    Comments: 'stats.engagement.avgCommentsRatio',
+    Followers:'followerCount'}
+  
 
   constructor(private http: Http, private apiservice: ApiServiceService) { }
   ngOnInit() {
-    
+    console.log(this.sortingoptions["Likes"]);
+    console.log(this.sortingOption);
+    // this.apiservice.getAllInfluencers(this.minChange, this.maxChange, this.printedOption, this.keyword, this.sortingoptions[this.sortingOption]).subscribe((data) => this.sortInterestDATA=(data));
+    this.apiservice.getAllInfluencers(this.minChange, this.maxChange, this.printedOption, this.sortingoptions[this.sortingOption]).subscribe((data) => this.sortInterestDATA=(data));
+
   }
   
   // count;
@@ -31,6 +40,9 @@ export class FiltersComponent implements OnInit {
   //   this.apiservice.count= this.apiservice.count+1;
   //   this.count = this.apiservice.count;
   // }
+  apply(){
+    this.apiservice.getAllInfluencers(this.minChange, this.maxChange, this.printedOption, this.sortingoptions[this.sortingOption]).subscribe((data) => this.sortInterestDATA=(data));
+  }
 
   receivePrintedOption($event){
     console.log(this.printedOption);
@@ -43,7 +55,7 @@ export class FiltersComponent implements OnInit {
   changesortfactor($event){
     // console.log(this.sortingOption);
     // console.log(this.sortingOption==="Likes");
-    this.apiservice.sort(this.sortingOption).subscribe((data) => this.sortInterestDATA=(data));
+    // this.apiservice.sort(this.sortingOption).subscribe((data) => this.sortInterestDATA=(data));
     
   }
 
@@ -54,7 +66,7 @@ export class FiltersComponent implements OnInit {
     console.log(event);
     console.log(this.keyword);
     this.apiservice.getKeyword(this.keyword).subscribe((data) => console.log(data));
-    this.apiservice.getKeyword(this.keyword).subscribe((data) => this.sortInterestDATA=(data));
+    // this.apiservice.getKeyword(this.keyword).subscribe((data) => this.sortInterestDATA=(data));
 
   }
   
@@ -63,32 +75,46 @@ export class FiltersComponent implements OnInit {
   min=12955300;
   max=155440542;
   range=[12955300,155440542];
+  minChange=12955300;
+  maxChange=155440542;
   rangeChanged(event:any){
+    this.minChange = event[0];
+    this.maxChange = event[1];
     console.log(event[0]);
     console.log(event[1]);
     this.apiservice.getCount(event[0], event[1]).subscribe((data) => console.log(data));
-    this.apiservice.getCount(event[0], event[1]).subscribe((data) => this.sortInterestDATA=(data));
+    // this.apiservice.getCount(event[0], event[1]).subscribe((data) => this.sortInterestDATA=(data));
   }
   rangeChangedloadmore(min, max){
     // console.log(event[0]);
     // console.log(event[1]);
     // this.apiservice.getCount(event[0], event[1]).subscribe((data) => console.log(data));
-    this.apiservice.getCount(min, max).subscribe((data) => this.sortInterestDATA=(data));
+    // this.apiservice.getCount(min, max).subscribe((data) => this.sortInterestDATA=(data));
   }
 
   count=1;
   increaseCount(){
     this.count= this.count+1;
     this.apiservice.getfiltercount(this.count);
+    this.apiservice.getAllInfluencers(this.minChange, this.maxChange, this.printedOption, this.sortingoptions[this.sortingOption]).subscribe((data) => this.sortInterestDATA=(data));
+
+  }
+
+  reset(){
+    this.minChange = 12955300;
+    this.maxChange = 155440542;
+    // this.sortingOption = "Followers";
+    this.apiservice.getAllInfluencersDEFAULT(this.minChange, this.maxChange, this.sortingoptions[this.sortingOption]).subscribe((data) => this.sortInterestDATA=(data));
   }
 
   ///INTERESTS///
+  // interest;
   changeinterest(event){
     // console.log(event);
     console.log("Interest has been changed");
     this.changeTitle(this.interestOption);
     console.log(this.printedOption);
-    this.apiservice.getInterests(this.printedOption).subscribe((data) => this.sortInterestDATA=data);
+    // this.apiservice.getInterests(this.printedOption).subscribe((data) => this.sortInterestDATA=data);
   }
 
   changeTitle(x){

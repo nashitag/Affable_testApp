@@ -44,7 +44,7 @@ export class IndInfluencerComponent implements OnInit {
 
   ngOnInit() {
 
-    this.apiservice.getAllInfluencers().subscribe((data) => console.log(data));
+    // this.apiservice.getAllInfluencers().subscribe((data) => console.log(data));
     // this.apiservice.getAllInfluencers().subscribe((data) => this.sortInterestDATA=data);
 
     // this.apiservice.getSingleInfluencer('dovecameron').subscribe((data) => this.singleInfluencer=data);

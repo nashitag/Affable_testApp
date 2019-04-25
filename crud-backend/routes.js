@@ -17,8 +17,30 @@ const Influencer = require('./model/schema');
 // })
 
 //sort by follower count ->
-router.get('/allinfluencers', (req, res, next)=>{
-    Influencer.find(function(err,items){
+router.get('/allinfluencers/:sort/:count', (req, res, next)=>{
+    var searchQuery ={}
+    console.log(req.query);
+    console.log(req.params.sort)
+    console.log(req.params.count);
+
+    // searchQuery = { followerCount: {"$gte" : req.query.x, "$lte" : req.query.y}, 'stats.interests': req.query.interests, $text: {$search: req.query.keyword}};
+    searchQuery = { followerCount: {"$gte" : req.query.x, "$lte" : req.query.y}, 'stats.interests': req.query.interests};
+
+    var sortQuery = {}
+    if(req.params.sort=="stats.engagement.avgLikesRatio"){
+        sortQuery ={"stats.engagement.avgLikesRatio":-1};
+    }
+    else if(req.params.sort=="stats.engagement.avgCommentsRatio"){
+        sortQuery ={"stats.engagement.avgCommentsRatio":-1};
+    }
+    if(req.params.sort=="followerCount"){
+        sortQuery ={"followerCount":-1};
+    }
+    console.log(searchQuery);
+    // var sortQuery = {};
+    
+    
+    Influencer.find(searchQuery, function(err,items){
         if(err){
             res.json(err);
         }
@@ -26,7 +48,39 @@ router.get('/allinfluencers', (req, res, next)=>{
             console.log("getting all users");
             res.json(items);
         }
-    }).sort({followerCount:-1}).limit(20)
+    }).sort(sortQuery).limit(req.params.count*20)
+})
+
+router.get('/allinfluencersDEFAULT/:sort/:count', (req, res, next)=>{
+    var searchQuery ={}
+    console.log(req.query);
+    console.log(req.params.sort)
+    console.log(req.params.count);
+
+    searchQuery = { followerCount: {"$gte" : req.query.x, "$lte" : req.query.y}};
+    var sortQuery = {}
+    if(req.params.sort=="stats.engagement.avgLikesRatio"){
+        sortQuery ={"stats.engagement.avgLikesRatio":-1};
+    }
+    else if(req.params.sort=="stats.engagement.avgCommentsRatio"){
+        sortQuery ={"stats.engagement.avgCommentsRatio":-1};
+    }
+    if(req.params.sort=="followerCount"){
+        sortQuery ={"followerCount":-1};
+    }
+    console.log(searchQuery);
+    // var sortQuery = {};
+    
+    
+    Influencer.find(searchQuery, function(err,items){
+        if(err){
+            res.json(err);
+        }
+        else{
+            console.log("getting all users");
+            res.json(items);
+        }
+    }).sort(sortQuery).limit(req.params.count*20)
 })
 
 //sort 

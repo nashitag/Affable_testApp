@@ -8,7 +8,6 @@ import { FiltersComponent } from '../app/filters/filters.component'
 
 
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -20,10 +19,37 @@ export class ApiServiceService {
 
   urlx= 'https://s3.us-west-2.amazonaws.com/secure.notion-static.com/e0f5cd17-fe74-4296-bbf5-8e2aceef9558/data.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAT73L2G45C5GRVRXV%2F20190419%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20190419T055429Z&X-Amz-Expires=86400&X-Amz-Security-Token=AgoJb3JpZ2luX2VjEHoaCXVzLXdlc3QtMiJIMEYCIQCcR6RPmGNJMnVLeICKfCLoMnlD%2BRRjpwSIg3gqxoI4dwIhAOQN92pXFlwSIqopWLTWxVtZXr7t%2B1FT1rhW3TWJnVhjKtoDCFMQABoMMjc0NTY3MTQ5MzcwIgy%2BcvWM4lvDJ4B0a4UqtwPnrM3p65nJg5aFIbyA7iofQZHh5OPuaMaXy8MMMckuRfTIIkwHXz4Bv0AXdFYQ0X8BIeN7ENsG%2B9MZETyo43VEtZozCaHXkKXWjg5g2cXshB9aGc%2Beh%2FV7lJXYSAS14gGVl12ZOIj5JMk4gnCm6wnsvw48Wonm0iO%2BA5yi0iwGJ0Vd7qe78CCmeWjvY8C4jHzyMNDe7%2Fuydo1NZJxqwVFCg2H7qqhKqLl1UKxO8D93ow4MvwH6GK%2FAVfTMq6BgPkZb4yZJ085ijOgebJWF5AoRlhikBAc%2B%2FOyXkIHlLT3buJLfp6O%2FSKR4CuGGPy8VPT5U8mmWzBMAo2bxJq4sBcnuEBy5vmQEExWWWIhb2AsRAL8a7Mi%2F9IuTMXap03XMWMrHWI6ahGhAZdEY1aIPTSC97Wt5ag9WaqfuHLAt7M5G4tBVeF0TM9HTgMvDXV1X0R1hcWMnjFWL92qpkpCDu%2BJTUT5BGrRT140FCrabf0CWXZUZrqKDOZvSjpngDo88U4bAo5kTXak7WuzAVNnkOb62H1k0eqrjugCy5G%2FZO3mTahu1hBpzXpD%2Fsq9%2BXYruMwPdbseGjyf7MOvH5OUFOrMBmHp5Xtbr23TV6gOFmaeX59Kr5gvJNGbQKItkov7MEsafiTy1Z%2BLPtE3YPhTRUzwEBwT%2Fs642NY9UDVbNs1qe6SjN2gTg4I9r9jzG2Osu9s8fLij6xzkUG0M%2B%2FfxDXaQ8Yyubd1mLH%2FF%2BeGgBtPVEg0kywZHi23lAKLqrAqEpBabZr12dJppBTgNI9sYll2MctzP7sqSuw46i3mnt5wD%2FPX7U%2FIvdwM8mgnDfrlIE3S%2F4rxU%3D&X-Amz-Signature=cb1c74929a91c9de4d4a5bfc1cb05dcc14012dbed98e0348145972c0e89c0a74&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22data.json%22';
   
+  apicount=1;
+  getfiltercount(count:number){
+    console.log(count);
+    this.apicount=count;
+    console.log(this.apicount);
+  }
+
   //ALL USERS
   api_url_all = 'http://localhost:3000/api/allinfluencers';
-  getAllInfluencers(){
-    return this.http.get(this.api_url_all).pipe(map((response) => response.json()));
+  getAllInfluencers(x:number, y:number, interest, sort:string){
+    //search parameters
+    console.log(sort);
+    var params = new URLSearchParams();
+    //Follower count { followerCount: {"$gte" : req.query.x, "$lte" : req.query.y} };
+
+    //Interest {'stats.interests':interest}
+
+    //keyword: {'keyword':keyword}
+
+    //sort
+    
+    this.api_url_all = 'http://localhost:3000/api/allinfluencers/'+sort+'/'+this.apicount;
+    
+    return this.http.get(this.api_url_all, {params:{x, y, 'interests': interest, 'sort':sort}}).pipe(map((response) => response.json()));
+  }
+
+
+  getAllInfluencersDEFAULT(x:number, y:number,sort:string){
+    this.api_url_all = 'http://localhost:3000/api/allinfluencersDEFAULT/'+sort+'/'+this.apicount;
+    
+    return this.http.get(this.api_url_all, {params:{x, y, 'sort':sort}}).pipe(map((response) => response.json()));
   }
   
 //  count=FiltersComponent.count;
@@ -60,12 +86,7 @@ export class ApiServiceService {
   }
 
 
-  apicount=1;
-  getfiltercount(count:number){
-    console.log(count);
-    this.apicount=count;
-    console.log(this.apicount);
-  }
+  
   //INTERESTS
   api_url_interest;
   getInterests(interest: string){
