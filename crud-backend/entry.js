@@ -6,8 +6,9 @@ var cors = require('cors');
 var app = express();
 const routes = require('./routes');
 
+// mongodb://127.0.0.1:27017
 
-mongoose.connect('mongodb://localhost:27017/db', { useNewUrlParser: true });
+mongoose.connect('mongodb://127.0.0.1:27017/db', { useNewUrlParser: true });
 
 mongoose.connection.on('connected', ()=>{
     console.log('Connected to mongodb');

@@ -3,7 +3,8 @@
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "types": [],
-    "paths": { "@angular/": ["node_modules/@angular/"] }
+    "paths": { "@angular/": ["node_modules/@angular/"],
+      "@angular/*": ["node_modules/@angular/*"] }
   },
   "exclude": [
     "test.ts",
