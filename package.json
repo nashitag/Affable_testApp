@@ -30,7 +30,7 @@
     "aws-amplify-angular": "^3.0.1",
     "core-js": "^2.5.4",
     "cors": "^2.8.5",
-    "express": "~4.7.2",
+    "express": "~4.17.3",
     "get-json": "^1.0.1",
     "ngx-rangeslider-component": "^1.0.6",
     "request": "^2.81.0",
